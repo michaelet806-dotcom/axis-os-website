@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#0A0B0D" />
+<title>AXIS·OS — Subscribe to a company, not seats.</title>
+<meta name="description" content="AXIS OS is the operating system for company-scale AI labor — 80+ trained agents across 15 departments, billed like software. Your executive team initializes in 14 days." />
+<link rel="canonical" href="https://axis-os.org" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+
+<meta property="og:site_name" content="AXIS·OS" />
+<meta property="og:title" content="AXIS·OS — Subscribe to a company, not seats." />
+<meta property="og:description" content="80+ AI agents. 15 departments. One subscription. Your executive team initializes in 14 days." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://axis-os.org" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AXIS·OS — Subscribe to a company, not seats." />
+<meta name="twitter:description" content="80+ AI agents. 15 departments. One subscription." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css?v=1" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23C6FF3D'/%3E%3C/svg%3E" />
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- Top scroll progress -->
+<div id="scrollMark" class="scroll-mark" aria-hidden="true"></div>
+
+<!-- ─────────  NAV  ───────── -->
+<header class="nav" id="nav">
+  <div class="nav__inner container">
+    <a href="#top" class="logo" aria-label="AXIS OS home">
+      <span class="logo__mark" aria-hidden="true"></span>
+      <span class="logo__word"><strong>AXIS</strong><span class="logo__dot">·</span>OS</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#departments">Departments</a>
+      <a href="#floor">The Floor</a>
+      <a href="#workflows">Workflows</a>
+      <a href="#math">The Math</a>
+    </nav>
+    <a href="#initialize" class="btn btn--accent btn--sm">Book a call</a>
+    <button class="nav__menu" id="navMenu" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="drawer" id="drawer" aria-hidden="true" inert>
+    <a href="#departments">Departments</a>
+    <a href="#floor">The Floor</a>
+    <a href="#workflows">Workflows</a>
+    <a href="#math">The Math</a>
+    <a href="#initialize" class="btn btn--accent">Book a call</a>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<a id="top"></a>
+
+<!-- ─────────  01. BOOT (HERO)  ───────── -->
+<section class="hero">
+  <div class="container hero__inner">
+
+    <div class="hero__left">
+      <div class="ticker mono" id="bootTicker">
+        <span class="ticker__cursor" aria-hidden="true">&gt;</span>
+        <span id="bootText">axis boot --company "your_co"</span>
+        <span class="ticker__caret" aria-hidden="true"></span>
+      </div>
+
+      <h1 class="display display--hero">
+        Your company's<br />
+        <em>operating system.</em>
+      </h1>
+
+      <p class="lede">
+        AXIS·OS is <strong>80+ trained AI agents</strong> across <strong>15 departments</strong>, billed like software. Stop hiring an executive team you can't afford. Subscribe to one that initializes in 14 days.
+      </p>
+
+      <div class="hero__cta">
+        <a href="#initialize" class="btn btn--accent btn--lg" data-magnetic>
+          Initialize AXIS <span aria-hidden="true">→</span>
+        </a>
+        <a href="#floor" class="link link--arrow">See it run <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="hero__meta mono mono--mute">
+        // <span class="live-dot" aria-hidden="true"></span><span id="liveCount">87</span> agents · 15 departments · uptime <span class="accent-text">99.98%</span>
+      </div>
+    </div>
+
+    <aside class="hero__right" aria-label="Live department grid">
+      <div class="grid-tiles" id="gridTiles">
+        <!-- 15 tiles injected as static HTML; JS flickers them -->
+        <div class="tile-mini" data-sym="CS"><span class="tile-mini__sym mono">CS</span><span class="tile-mini__lbl">Chief of Staff</span><span class="tile-mini__count mono">3</span><span class="tile-mini__dot" aria-hidden="true"></span></div>
+        <div class="tile-mini" data-sym="SR"><span class="tile-mini__sym mono">SR</span><span class="tile-mini__lbl">Security · SRE</span><span class="tile-mini__count mono">4</span><span class="tile-mini__dot" aria-hidden="true"></span></div>
+        <div class="tile-mini" data-sym="EN"><span class="tile-mini__sym mono">EN</span><span class="tile-mini__lbl">Engineering</span><span class="tile-mini__count mono">12</span><span class="tile-mini__dot" aria-hidden="true"></span></div>
+        <div class="tile-mini" data-sym="PR"><span class="tile-mini__sym mono">PR</span><span class="tile-mini__lbl">Product</span><span class="tile-mini__count mono">8</span><span class="tile-mini__dot" aria-hidden="true"></span></div>
+        <div class="tile-mini" data-sym="DS"><span class="tile-mini__sym mono">DS</span><span class="tile-mini__lbl">Design · UX</span><span class="tile-mini__count mono">7</span><span class="tile-mini__dot" aria-hidden="true"></span></div>
+        <div class="tile-mini" data-sym="MK"><span class="tile-mini__sym mono">MK</span><span class="tile-mini__lbl">Marketing</span><span class="tile-mini__count mono">21</span><span class="tile-mini__dot" aria-hidden="true"></span></div>
+        <div class="tile-mini" data-sym="PM"><span class="tile-mini__sym mono">PM</span><span class="tile-mini__lbl">Paid Media</span><span class="tile-mini__count mono">6</span><span class="tile-mini__dot" aria-hidden="true"></span></div>
+        <div class="tile-mini" data-sym="SL"><span class="tile-mini__sym mono">SL</span><span class="tile-mini__lbl">Sales</span><span class="tile-mini__count mono">10</span><span class="tile-mini__dot" aria-hidden="true"></span></div>
+        <div class="tile-mini" data-sym="CX"><span class="tile-mini__sym mono">CX</span><span class="tile-mini__lbl">Customer Success</span><span class="tile-mini__count mono">5</span><span class="tile-mini__dot" aria-hidden="true"></span></div>
+        <div class="tile-mini" data-sym="FN"><span class="tile-mini__sym mono">FN</span><span class="tile-mini__lbl">Finance</span><span class="tile-mini__count mono">6</span><span class="tile-mini__dot" aria-hidden="true"></span></div>
+        <div class="tile-mini" data-sym="LG"><span class="tile-mini__sym mono">LG</span><span class="tile-mini__lbl">Legal</span><span class="tile-mini__count mono">3</span><span class="tile-mini__dot" aria-hidden="true"></span></div>
+        <div class="tile-mini" data-sym="QA"><span class="tile-mini__sym mono">QA</span><span class="tile-mini__lbl">Testing · QA</span><span class="tile-mini__count mono">8</span><span class="tile-mini__dot" aria-hidden="true"></span></div>
+        <div class="tile-mini" data-sym="DT"><span class="tile-mini__sym mono">DT</span><span class="tile-mini__lbl">Data</span><span class="tile-mini__count mono">5</span><span class="tile-mini__dot" aria-hidden="true"></span></div>
+        <div class="tile-mini" data-sym="OP"><span class="tile-mini__sym mono">OP</span><span class="tile-mini__lbl">Operations</span><span class="tile-mini__count mono">4</span><span class="tile-mini__dot" aria-hidden="true"></span></div>
+        <div class="tile-mini" data-sym="CM"><span class="tile-mini__sym mono">CM</span><span class="tile-mini__lbl">Comms · PR</span><span class="tile-mini__count mono">3</span><span class="tile-mini__dot" aria-hidden="true"></span></div>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<!-- ─────────  02. THE GAP  ───────── -->
+<section class="gap section" id="gap">
+  <div class="container">
+    <header class="section-head">
+      <div class="mono mono--mute eyebrow">// 01 — The Gap</div>
+      <h2 class="display">You have a team.<br /><em>You don't have an executive layer.</em></h2>
+      <p class="lede">A 12-person company can't afford a Chief of Staff, a CMO, a CFO, a head of legal, and an SRE. So you do all 5 jobs — badly. AXIS·OS gives you that org chart on day one, billed by the month.</p>
+    </header>
+
+    <div class="org-chart" aria-hidden="true">
+      <div class="org-chart__row">
+        <div class="org-node org-node--filled">CEO</div>
+      </div>
+      <div class="org-chart__row">
+        <div class="org-node org-node--empty">Chief of Staff</div>
+        <div class="org-node org-node--empty">CMO</div>
+        <div class="org-node org-node--empty">CFO</div>
+        <div class="org-node org-node--empty">CTO</div>
+        <div class="org-node org-node--empty">General Counsel</div>
+      </div>
+      <div class="org-chart__row">
+        <div class="org-node org-node--filled">You</div>
+        <div class="org-node org-node--filled">Your team</div>
+        <div class="org-node org-node--filled">Your team</div>
+        <div class="org-node org-node--filled">Your team</div>
+      </div>
+      <div class="org-chart__caption mono mono--mute">5 roles unfilled · $1.4M/yr to hire · 8 months to recruit</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────  03. MEET THE FLOORS (DEPARTMENTS)  ───────── -->
+<section class="departments section" id="departments">
+  <div class="container">
+    <header class="section-head">
+      <div class="mono mono--mute eyebrow">// 02 — Meet the Floors</div>
+      <h2 class="display">Fifteen departments.<br /><em>One subscription.</em></h2>
+      <p class="lede">Each "floor" is a coordinated team of agents trained on a single function. They share context, escalate to each other, and report up to your Chief of Staff agent — the only one you actually talk to.</p>
+    </header>
+
+    <div class="dept-grid">
+      <article class="dept dept--flagship">
+        <div class="dept__head">
+          <span class="dept__sym mono">SL</span>
+          <div>
+            <h3 class="dept__name">Sales</h3>
+            <span class="dept__count mono">10 agents</span>
+          </div>
+        </div>
+        <p class="dept__copy">Discovery, deal strategy, sales coaching, sales engineering, pipeline analysis, proposal writing, follow-up cadences.</p>
+      </article>
+
+      <article class="dept dept--flagship">
+        <div class="dept__head">
+          <span class="dept__sym mono">MK</span>
+          <div>
+            <h3 class="dept__name">Marketing</h3>
+            <span class="dept__count mono">21 agents</span>
+          </div>
+        </div>
+        <p class="dept__copy">SEO, content, social, livestream, China platforms, AI-citation, ASO. Every channel, one strategy.</p>
+      </article>
+
+      <article class="dept">
+        <div class="dept__head"><span class="dept__sym mono">CS</span><div><h3 class="dept__name">Chief of Staff</h3><span class="dept__count mono">3 agents</span></div></div>
+        <p class="dept__copy">Routes work, files context, handles your inbox.</p>
+      </article>
+
+      <article class="dept">
+        <div class="dept__head"><span class="dept__sym mono">EN</span><div><h3 class="dept__name">Engineering</h3><span class="dept__count mono">12 agents</span></div></div>
+        <p class="dept__copy">Senior eng, devops, security, code review, architecture.</p>
+      </article>
+
+      <article class="dept">
+        <div class="dept__head"><span class="dept__sym mono">PR</span><div><h3 class="dept__name">Product</h3><span class="dept__count mono">8 agents</span></div></div>
+        <p class="dept__copy">PM, sprint prio, trend research, feedback synthesis.</p>
+      </article>
+
+      <article class="dept">
+        <div class="dept__head"><span class="dept__sym mono">DS</span><div><h3 class="dept__name">Design · UX</h3><span class="dept__count mono">7 agents</span></div></div>
+        <p class="dept__copy">Brand, UI systems, UX research, accessibility, motion.</p>
+      </article>
+
+      <article class="dept">
+        <div class="dept__head"><span class="dept__sym mono">PM</span><div><h3 class="dept__name">Paid Media</h3><span class="dept__count mono">6 agents</span></div></div>
+        <p class="dept__copy">PPC, paid social, programmatic, tracking, search query.</p>
+      </article>
+
+      <article class="dept">
+        <div class="dept__head"><span class="dept__sym mono">FN</span><div><h3 class="dept__name">Finance</h3><span class="dept__count mono">6 agents</span></div></div>
+        <p class="dept__copy">Modeling, FP&amp;A, bookkeeping, tax, investment research.</p>
+      </article>
+
+      <article class="dept dept--flagship">
+        <div class="dept__head">
+          <span class="dept__sym mono">SR</span>
+          <div>
+            <h3 class="dept__name">Security · SRE</h3>
+            <span class="dept__count mono">4 agents</span>
+          </div>
+        </div>
+        <p class="dept__copy">Threat detection, incident response, SLO architecture, compliance auditing. The team you definitely can't afford yet — running 24/7.</p>
+      </article>
+
+      <article class="dept">
+        <div class="dept__head"><span class="dept__sym mono">LG</span><div><h3 class="dept__name">Legal</h3><span class="dept__count mono">3 agents</span></div></div>
+        <p class="dept__copy">Client intake, document review, billing, compliance.</p>
+      </article>
+
+      <article class="dept">
+        <div class="dept__head"><span class="dept__sym mono">CX</span><div><h3 class="dept__name">Customer Success</h3><span class="dept__count mono">5 agents</span></div></div>
+        <p class="dept__copy">Onboarding, churn prevention, expansion.</p>
+      </article>
+
+      <article class="dept">
+        <div class="dept__head"><span class="dept__sym mono">QA</span><div><h3 class="dept__name">Testing · QA</h3><span class="dept__count mono">8 agents</span></div></div>
+        <p class="dept__copy">Accessibility, performance, API tests, evidence collection.</p>
+      </article>
+
+      <article class="dept">
+        <div class="dept__head"><span class="dept__sym mono">DT</span><div><h3 class="dept__name">Data</h3><span class="dept__count mono">5 agents</span></div></div>
+        <p class="dept__copy">Analytics, dashboards, pipelines, observability.</p>
+      </article>
+
+      <article class="dept">
+        <div class="dept__head"><span class="dept__sym mono">OP</span><div><h3 class="dept__name">Operations</h3><span class="dept__count mono">4 agents</span></div></div>
+        <p class="dept__copy">Workflow design, supply chain, vendor management.</p>
+      </article>
+
+      <article class="dept">
+        <div class="dept__head"><span class="dept__sym mono">CM</span><div><h3 class="dept__name">Comms · PR</h3><span class="dept__count mono">3 agents</span></div></div>
+        <p class="dept__copy">Brand voice, PR, community, crisis comms.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────  04. THE FLOOR (signature wow)  ───────── -->
+<section class="floor section" id="floor">
+  <div class="container">
+    <header class="section-head">
+      <div class="mono mono--mute eyebrow">// 03 — The Operations Floor</div>
+      <h2 class="display">Watch your company<br /><em>run itself.</em></h2>
+      <p class="lede">Every AXIS·OS subscription includes a live dashboard. Here's a 90-second loop of what an actual operating floor looks like — eight agents working in parallel, right now.</p>
+    </header>
+
+    <div class="ops" id="opsFloor" aria-label="Live operations dashboard demonstration">
+      <div class="ops__chrome">
+        <div class="ops__dots" aria-hidden="true"><span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span></div>
+        <div class="ops__title mono">axis-os.dashboard / floor — live</div>
+        <div class="ops__status mono"><span class="live-dot"></span>operational</div>
+      </div>
+      <div class="ops__grid" id="opsGrid">
+        <div class="ops__cell" data-agent="SALES.outreach"><div class="ops__cell-head"><span class="mono">SALES.outreach</span><span class="ops__cell-dot" aria-hidden="true"></span></div><div class="ops__cell-body mono" data-msg></div><div class="ops__cell-time mono"></div></div>
+        <div class="ops__cell" data-agent="FINANCE.cash"><div class="ops__cell-head"><span class="mono">FINANCE.cash</span><span class="ops__cell-dot" aria-hidden="true"></span></div><div class="ops__cell-body mono" data-msg></div><div class="ops__cell-time mono"></div></div>
+        <div class="ops__cell" data-agent="LEGAL.review"><div class="ops__cell-head"><span class="mono">LEGAL.review</span><span class="ops__cell-dot" aria-hidden="true"></span></div><div class="ops__cell-body mono" data-msg></div><div class="ops__cell-time mono"></div></div>
+        <div class="ops__cell" data-agent="DESIGN.brand"><div class="ops__cell-head"><span class="mono">DESIGN.brand</span><span class="ops__cell-dot" aria-hidden="true"></span></div><div class="ops__cell-body mono" data-msg></div><div class="ops__cell-time mono"></div></div>
+        <div class="ops__cell" data-agent="ENG.deploy"><div class="ops__cell-head"><span class="mono">ENG.deploy</span><span class="ops__cell-dot" aria-hidden="true"></span></div><div class="ops__cell-body mono" data-msg></div><div class="ops__cell-time mono"></div></div>
+        <div class="ops__cell" data-agent="MKT.seo"><div class="ops__cell-head"><span class="mono">MKT.seo</span><span class="ops__cell-dot" aria-hidden="true"></span></div><div class="ops__cell-body mono" data-msg></div><div class="ops__cell-time mono"></div></div>
+        <div class="ops__cell" data-agent="SECURITY.scan"><div class="ops__cell-head"><span class="mono">SECURITY.scan</span><span class="ops__cell-dot" aria-hidden="true"></span></div><div class="ops__cell-body mono" data-msg></div><div class="ops__cell-time mono"></div></div>
+        <div class="ops__cell" data-agent="CHIEFOFSTAFF"><div class="ops__cell-head"><span class="mono">CHIEFOFSTAFF</span><span class="ops__cell-dot" aria-hidden="true"></span></div><div class="ops__cell-body mono" data-msg></div><div class="ops__cell-time mono"></div></div>
+      </div>
+      <div class="ops__footer mono">
+        <span><span class="live-dot"></span>8 agents online</span>
+        <span>uptime <span class="accent-text">99.98%</span></span>
+        <span>tasks today <span class="accent-text" id="tasksToday">1,247</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────  05. WORKFLOWS  ───────── -->
+<section class="workflows section" id="workflows">
+  <div class="container">
+    <header class="section-head">
+      <div class="mono mono--mute eyebrow">// 04 — A Real Workflow</div>
+      <h2 class="display">A new lead lands.<br /><em>Watch what happens.</em></h2>
+      <p class="lede">No human touches this until step 6. Six agents from four departments, one continuous context, four minutes end-to-end.</p>
+    </header>
+
+    <ol class="flow">
+      <li class="flow__step" data-step="01">
+        <span class="flow__sym mono">00:00</span>
+        <div class="flow__body">
+          <span class="flow__agent mono">TRIGGER</span>
+          <h3>Form submission · <span class="accent-text">acme.com</span></h3>
+          <p>"Interested in enterprise pricing." Visitor fills out contact form on your site.</p>
+        </div>
+      </li>
+      <li class="flow__step" data-step="02">
+        <span class="flow__sym mono">00:14</span>
+        <div class="flow__body">
+          <span class="flow__agent mono">CX.intake</span>
+          <h3>Contact enriched</h3>
+          <p>Pulls firmographic data, identifies role (VP Eng), company size (240 ppl), funding stage (Series C).</p>
+        </div>
+      </li>
+      <li class="flow__step" data-step="03">
+        <span class="flow__sym mono">00:32</span>
+        <div class="flow__body">
+          <span class="flow__agent mono">SALES.qualifier</span>
+          <h3>ICP score: 87/100</h3>
+          <p>Cross-references against your closed-won data. Flags as priority. Routes to outreach.</p>
+        </div>
+      </li>
+      <li class="flow__step" data-step="04">
+        <span class="flow__sym mono">01:08</span>
+        <div class="flow__body">
+          <span class="flow__agent mono">MARKETING.research</span>
+          <h3>Account intelligence brief</h3>
+          <p>Pulls 10-K filings, recent press, tech stack, hiring signals. Three personalization angles surfaced.</p>
+        </div>
+      </li>
+      <li class="flow__step" data-step="05">
+        <span class="flow__sym mono">02:34</span>
+        <div class="flow__body">
+          <span class="flow__agent mono">SALES.outreach</span>
+          <h3>Email drafted</h3>
+          <p>Personalized to their reliability problem (mentioned in last earnings call). Calendar link embedded.</p>
+        </div>
+      </li>
+      <li class="flow__step flow__step--human" data-step="06">
+        <span class="flow__sym mono">03:01</span>
+        <div class="flow__body">
+          <span class="flow__agent mono">CHIEF_OF_STAFF</span>
+          <h3>Approved &amp; sent</h3>
+          <p>You see the draft in Slack with a thumbs-up button. One tap. Sent.</p>
+        </div>
+      </li>
+      <li class="flow__step flow__step--complete" data-step="07">
+        <span class="flow__sym mono">04:12</span>
+        <div class="flow__body">
+          <span class="flow__agent mono accent-text">RESULT</span>
+          <h3>Meeting booked. <span class="accent-text">$2.4M opportunity opened.</span></h3>
+          <p>Calendar invite confirmed. Deal record auto-created. Slack channel auto-provisioned.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ─────────  06. SKILLS LIBRARY  ───────── -->
+<section class="skills section" id="skills">
+  <div class="container">
+    <header class="section-head">
+      <div class="mono mono--mute eyebrow">// 05 — Skills Library</div>
+      <h2 class="display">Five hundred skills.<br /><em>One command line.</em></h2>
+      <p class="lede">Every agent knows hundreds of skills out of the box. Type what you want done — AXIS·OS picks the right team and ships it.</p>
+    </header>
+
+    <div class="palette" role="region" aria-label="Skills command palette demo">
+      <div class="palette__bar">
+        <span class="mono mono--mute palette__kbd">⌘K</span>
+        <div class="palette__query mono"><span id="paletteQuery">draft a Q4 board update</span><span class="palette__caret" aria-hidden="true"></span></div>
+      </div>
+      <ul class="palette__results" id="paletteResults">
+        <li class="palette__row palette__row--hot"><span class="mono palette__dept">CS</span><span class="palette__title">Draft quarterly board update</span><span class="mono palette__dept-name">Chief of Staff</span><span class="mono palette__time">~6 min</span></li>
+        <li class="palette__row"><span class="mono palette__dept">FN</span><span class="palette__title">Build Q4 financial summary</span><span class="mono palette__dept-name">Finance</span><span class="mono palette__time">~4 min</span></li>
+        <li class="palette__row"><span class="mono palette__dept">PR</span><span class="palette__title">Pull Q4 product metrics</span><span class="mono palette__dept-name">Product</span><span class="mono palette__time">~2 min</span></li>
+        <li class="palette__row"><span class="mono palette__dept">SL</span><span class="palette__title">Pipeline state &amp; forecast</span><span class="mono palette__dept-name">Sales</span><span class="mono palette__time">~3 min</span></li>
+        <li class="palette__row"><span class="mono palette__dept">DT</span><span class="palette__title">Cohort retention summary</span><span class="mono palette__dept-name">Data</span><span class="mono palette__time">~4 min</span></li>
+      </ul>
+      <div class="palette__footer mono mono--mute">
+        <span>↑ ↓ to navigate</span><span>↵ to dispatch</span><span>esc to close</span>
+      </div>
+    </div>
+
+    <div class="skills__count mono mono--mute">
+      // currently indexed: <span class="accent-text">523</span> skills · 15 departments · last updated 2 minutes ago
+    </div>
+  </div>
+</section>
+
+<!-- ─────────  07. THE MATH  ───────── -->
+<section class="math section" id="math">
+  <div class="container">
+    <header class="section-head">
+      <div class="mono mono--mute eyebrow">// 06 — The Math</div>
+      <h2 class="display">The cost of hiring<br /><em>this org yourself.</em></h2>
+    </header>
+
+    <div class="ledger">
+      <div class="ledger__col">
+        <div class="ledger__title mono">HIRING 80 PEOPLE</div>
+        <ul>
+          <li><span>Average loaded cost / FTE</span><span class="mono">$140K</span></li>
+          <li><span>80 hires × $140K</span><span class="mono">$11.2M / yr</span></li>
+          <li><span>Recruiting (~25% of comp)</span><span class="mono">$2.8M</span></li>
+          <li><span>Time to assemble</span><span class="mono">~18 months</span></li>
+          <li><span>Coverage</span><span class="mono">9–5, weekdays</span></li>
+        </ul>
+        <div class="ledger__total"><span>Year 1</span><span>$14M+</span></div>
+        <div class="ledger__note mono mono--mute">Source: BLS 2024 + recruiter benchmarks · 80 mid/senior roles across 15 functions.</div>
+      </div>
+
+      <div class="ledger__or mono">vs.</div>
+
+      <div class="ledger__col ledger__col--us">
+        <div class="ledger__title mono">RUNNING AXIS·OS</div>
+        <ul>
+          <li><span>Starter (10 departments)</span><span class="mono">from $2,400/mo</span></li>
+          <li><span>Operator (15 departments)</span><span class="mono">$7,500/mo</span></li>
+          <li><span>Enterprise (custom + SLA)</span><span class="mono">talk to us</span></li>
+          <li><span>Time to initialize</span><span class="mono">14 days</span></li>
+          <li><span>Coverage</span><span class="mono">24/7</span></li>
+        </ul>
+        <div class="ledger__total"><span>Year 1</span><span class="accent-text">from $28,800</span></div>
+        <div class="ledger__note mono mono--mute">No recruiting. No benefits. No turnover. Cancel anytime.</div>
+      </div>
+    </div>
+
+    <p class="math__close">Same org. <em>~500× less.</em> Operating tomorrow.</p>
+  </div>
+</section>
+
+<!-- ─────────  08. INITIALIZE (FINAL CTA)  ───────── -->
+<section class="initialize section" id="initialize">
+  <div class="container initialize__inner">
+    <div class="mono mono--mute eyebrow">// 07 — Initialize</div>
+    <h2 class="display display--xl">Stop hiring.<br /><em>Start booting.</em></h2>
+    <p class="lede">Tell us about your company. We'll spec a custom AXIS·OS deployment and have your executive team online in 14 days.</p>
+
+    <form class="form" id="contactForm" novalidate>
+      <div class="form__row">
+        <label for="f-name"><span class="mono mono--mute">NAME</span><input id="f-name" type="text" name="name" placeholder="Your name" required autocomplete="name" enterkeyhint="next" /></label>
+        <label for="f-email"><span class="mono mono--mute">EMAIL</span><input id="f-email" type="email" name="email" placeholder="you@company.com" required autocomplete="email" inputmode="email" enterkeyhint="next" /></label>
+      </div>
+      <div class="form__row">
+        <label for="f-company"><span class="mono mono--mute">COMPANY</span><input id="f-company" type="text" name="business" placeholder="Company name" autocomplete="organization" /></label>
+        <label for="f-size"><span class="mono mono--mute">TEAM SIZE</span>
+          <select id="f-size" name="type">
+            <option value="" disabled selected>Select…</option>
+            <option>1–5</option>
+            <option>6–15</option>
+            <option>16–50</option>
+            <option>51–150</option>
+            <option>150+</option>
+          </select>
+        </label>
+      </div>
+      <label class="form__full" for="f-msg"><span class="mono mono--mute">WHICH DEPARTMENT WOULD YOU INITIALIZE FIRST?</span><textarea id="f-msg" name="message" rows="3" placeholder="Marketing? Sales? Chief of Staff? Tell us what's bleeding the most." enterkeyhint="send"></textarea></label>
+
+      <div class="form__submit-row">
+        <button type="submit" class="btn btn--accent btn--lg" data-magnetic id="formSubmit">
+          <span id="formBtnText">Initialize AXIS <span aria-hidden="true">→</span></span>
+          <span id="formBtnLoading" hidden>Booting…</span>
+        </button>
+        <div class="form__assure mono mono--mute">No contract. 14-day pilot. Cancel any time.</div>
+      </div>
+      <div class="form-success" id="formSuccess" role="status" aria-live="polite" hidden>✓ Received. We'll reach out within one business day with your custom deployment spec.</div>
+      <div class="form-error"   id="formError"   role="alert"  aria-live="assertive" hidden>Something went wrong. Email us at <a href="mailto:hello@axis-os.org">hello@axis-os.org</a></div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ─────────  FOOTER  ───────── -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href="#top" class="logo">
+        <span class="logo__mark" aria-hidden="true"></span>
+        <span class="logo__word"><strong>AXIS</strong><span class="logo__dot">·</span>OS</span>
+      </a>
+      <p class="footer__line">The operating system for company-scale AI labor.</p>
+    </div>
+    <nav class="footer__nav" aria-label="Footer">
+      <a href="#departments">Departments</a>
+      <a href="#floor">The Floor</a>
+      <a href="#workflows">Workflows</a>
+      <a href="#math">The Math</a>
+      <a href="#initialize">Initialize</a>
+    </nav>
+    <div class="footer__meta">
+      <div class="mono mono--mute">© 2026 AXIS·OS · est. 2024</div>
+      <a href="mailto:hello@axis-os.org" class="mono">hello@axis-os.org</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js?v=1"></script>
+</body>
+</html>

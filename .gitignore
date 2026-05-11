@@ -1,0 +1,9 @@
+.wrangler/
+.DS_Store
+node_modules/
+.env
+.env.local
+.vscode/
+.idea/
+*.log
+.playwright-mcp/
