@@ -133,20 +133,27 @@
       tick();
     };
 
-    let intervalId;
+    let intervalId = null;
+    let initialKick = null;
     const start = () => {
+      if (intervalId) return; // Already running — don't restack
       // Stagger initial render
-      cells.forEach((c, i) => setTimeout(() => renderCell(c), i * 380));
-      // Then random ones every ~2.5s
-      intervalId = setInterval(() => {
-        renderCell(cells[Math.floor(Math.random() * cells.length)]);
-        if (tasksToday) {
-          taskCount += Math.floor(Math.random() * 3) + 1;
-          tasksToday.textContent = taskCount.toLocaleString();
-        }
-      }, 2400);
+      cells.forEach((c, i) => setTimeout(() => renderCell(c), i * 360));
+      initialKick = setTimeout(() => {
+        // Then random ones every ~2.4s
+        intervalId = setInterval(() => {
+          renderCell(cells[Math.floor(Math.random() * cells.length)]);
+          if (tasksToday) {
+            taskCount += Math.floor(Math.random() * 3) + 1;
+            tasksToday.textContent = taskCount.toLocaleString();
+          }
+        }, 2400);
+      }, cells.length * 360 + 400);
     };
-    const stop = () => clearInterval(intervalId);
+    const stop = () => {
+      if (intervalId) { clearInterval(intervalId); intervalId = null; }
+      if (initialKick) { clearTimeout(initialKick); initialKick = null; }
+    };
 
     if (reduced) {
       cells.forEach(c => {
@@ -161,28 +168,77 @@
 
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => e.isIntersecting ? start() : stop());
-    }, { threshold:0.3 });
+    }, { threshold:0.15 });
     io.observe(floor);
   }
 
-  /* ─── PALETTE QUERY CYCLING ─── */
+  /* ─── PALETTE QUERY CYCLING (with matching results) ─── */
   function initPaletteQuery(){
     const q = $('#paletteQuery');
-    if (!q || reduced) return;
-    const queries = [
-      'draft a Q4 board update',
-      'build the marketing plan for our launch',
-      'audit our SOC2 readiness',
-      'forecast cash through 2027',
-      'review the Acme MSA',
-      'design our pricing page',
-      'find churn signals in last 90 days',
+    const results = $('#paletteResults');
+    if (!q || !results || reduced) return;
+
+    const scenarios = [
+      {
+        query: 'draft a Q4 board update',
+        rows: [
+          { dept:'CS', title:'Draft quarterly board update',     deptName:'Chief of Staff', time:'~6 min' },
+          { dept:'FN', title:'Build Q4 financial summary',       deptName:'Finance',         time:'~4 min' },
+          { dept:'PR', title:'Pull Q4 product metrics',          deptName:'Product',         time:'~2 min' },
+          { dept:'SL', title:'Pipeline state & forecast',        deptName:'Sales',           time:'~3 min' },
+          { dept:'DT', title:'Cohort retention summary',         deptName:'Data',            time:'~4 min' },
+        ],
+      },
+      {
+        query: 'audit our SOC2 readiness',
+        rows: [
+          { dept:'SR', title:'Run SOC2 control gap analysis',    deptName:'Security · SRE',  time:'~12 min' },
+          { dept:'LG', title:'Review existing policy library',   deptName:'Legal',           time:'~5 min' },
+          { dept:'EN', title:'Audit access controls & logs',     deptName:'Engineering',     time:'~8 min' },
+          { dept:'CS', title:'Draft remediation plan',           deptName:'Chief of Staff',  time:'~3 min' },
+          { dept:'OP', title:'Build vendor risk register',       deptName:'Operations',      time:'~6 min' },
+        ],
+      },
+      {
+        query: 'build the marketing plan for our Q1 launch',
+        rows: [
+          { dept:'MK', title:'Build launch campaign architecture',deptName:'Marketing',      time:'~9 min' },
+          { dept:'PM', title:'Plan paid media + budget',         deptName:'Paid Media',      time:'~5 min' },
+          { dept:'DS', title:'Generate creative variants',       deptName:'Design · UX',     time:'~7 min' },
+          { dept:'CM', title:'Draft PR + press list',            deptName:'Comms · PR',      time:'~4 min' },
+          { dept:'CX', title:'Build onboarding email flow',      deptName:'Customer Success',time:'~6 min' },
+        ],
+      },
+      {
+        query: 'find churn signals in last 90 days',
+        rows: [
+          { dept:'DT', title:'Score churn risk by cohort',       deptName:'Data',            time:'~5 min' },
+          { dept:'CX', title:'Tag at-risk accounts in CRM',      deptName:'Customer Success',time:'~3 min' },
+          { dept:'PR', title:'Cross-check product usage drops',  deptName:'Product',         time:'~4 min' },
+          { dept:'SL', title:'Draft retention outreach',         deptName:'Sales',           time:'~4 min' },
+          { dept:'FN', title:'Forecast revenue impact',          deptName:'Finance',         time:'~3 min' },
+        ],
+      },
     ];
+
+    const render = (scn) => {
+      q.textContent = scn.query;
+      results.innerHTML = scn.rows.map((r, i) =>
+        `<li class="palette__row${i === 0 ? ' palette__row--hot' : ''}">
+          <span class="mono palette__dept">${r.dept}</span>
+          <span class="palette__title">${r.title}</span>
+          <span class="mono palette__dept-name">${r.deptName}</span>
+          <span class="mono palette__time">${r.time}</span>
+        </li>`
+      ).join('');
+    };
+
+    render(scenarios[0]);
     let i = 0;
     setInterval(() => {
-      i = (i + 1) % queries.length;
-      q.textContent = queries[i];
-    }, 3200);
+      i = (i + 1) % scenarios.length;
+      render(scenarios[i]);
+    }, 4200);
   }
 
   /* ─── SECTION REVEALS ─── */

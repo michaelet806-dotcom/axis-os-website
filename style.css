@@ -165,12 +165,17 @@ ul,ol{list-style:none}
 
 /* ─── Skip link ─── */
 .skip-link{
-  position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+  position:absolute;left:0;top:0;
+  width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);
   background:var(--accent);color:var(--canvas);
-  padding:12px 18px;border-radius:8px;font-weight:600;z-index:200;
+  border-radius:8px;font-weight:600;z-index:200;
+  white-space:nowrap;border:0;
 }
-.skip-link:focus-visible{
-  position:fixed;left:18px;top:18px;width:auto;height:auto;
+.skip-link:focus,.skip-link:focus-visible{
+  position:fixed;left:18px;top:18px;
+  width:auto;height:auto;padding:12px 18px;margin:0;
+  clip:auto;clip-path:none;overflow:visible;
   outline:2px solid var(--accent);outline-offset:3px;
 }
 
@@ -206,10 +211,11 @@ main:focus-visible{outline:none}
 .nav__links a:hover{color:var(--accent)}
 
 .nav__menu{
-  display:none;width:44px;height:44px;
+  display:none;width:44px;min-width:44px;height:44px;
   flex-direction:column;justify-content:center;align-items:center;gap:5px;
+  flex-shrink:0;
 }
-.nav__menu span{display:block;width:22px;height:1.6px;background:var(--text);transition:transform var(--t),opacity var(--t)}
+.nav__menu span{display:block;width:22px;height:1.6px;background:var(--text);transition:transform var(--t),opacity var(--t);pointer-events:none}
 .nav__menu.is-open span:first-child{transform:translateY(3.3px) rotate(45deg)}
 .nav__menu.is-open span:last-child{transform:translateY(-3.3px) rotate(-45deg)}
 
@@ -224,11 +230,19 @@ main:focus-visible{outline:none}
 .drawer a{font-family:var(--font-display);font-size:1.3rem;font-weight:500;color:var(--text);min-height:44px;display:flex;align-items:center}
 .drawer .btn{width:fit-content}
 
-/* ─── Live dot ─── */
+/* ─── Live dot (signal-blue — system is live) ─── */
 .live-dot{
   display:inline-block;width:8px;height:8px;border-radius:50%;
-  background:var(--accent);margin-right:6px;
-  box-shadow:0 0 8px var(--accent-glow);
+  background:var(--signal);margin-right:6px;
+  box-shadow:0 0 8px var(--signal-glow);
+  animation:livePulse 2.4s ease-in-out infinite;
+  vertical-align:middle;
+}
+/* Signal dot (alt) */
+.signal-dot{
+  display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--signal);margin-right:6px;
+  box-shadow:0 0 8px var(--signal-glow);
   animation:livePulse 2.4s ease-in-out infinite;
   vertical-align:middle;
 }
@@ -298,7 +312,7 @@ main:focus-visible{outline:none}
   position:relative;
 }
 .grid-tiles::before{
-  content:"// LIVE — 87 agents online";
+  content:"// DEMO FLOOR — what your dashboard looks like";
   position:absolute;top:-13px;left:14px;
   background:var(--canvas);color:var(--accent);
   font-family:var(--font-mono);font-size:.66rem;letter-spacing:.08em;
@@ -440,7 +454,7 @@ main:focus-visible{outline:none}
 .dot{width:11px;height:11px;border-radius:50%}
 .dot--r{background:#ff5f57}.dot--y{background:#febc2e}.dot--g{background:#28c840}
 .ops__title{flex:1;text-align:center;color:var(--text-mute);font-size:.74rem;letter-spacing:.04em}
-.ops__status{font-size:.7rem;color:var(--accent);display:flex;align-items:center;gap:4px;letter-spacing:.06em}
+.ops__status{font-size:.7rem;color:var(--signal);display:flex;align-items:center;gap:4px;letter-spacing:.06em}
 
 .ops__grid{
   display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
@@ -688,10 +702,7 @@ main:focus-visible{outline:none}
    RESPONSIVE
 ═══════════════════════════════════════════════════ */
 @media (max-width:1100px){
-  .hero__inner{grid-template-columns:1fr;gap:48px}
-  .grid-tiles{max-width:480px;margin:0 auto;grid-template-rows:repeat(5,80px)}
   .dept-grid{grid-template-columns:repeat(3,1fr)}
-  .dept--flagship{grid-column:span 1}
   .ops__grid{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:880px){
@@ -717,6 +728,75 @@ main:focus-visible{outline:none}
   .flow__step{flex-direction:column;gap:8px}
   .flow__sym{align-self:flex-start}
   .org-chart__row .org-node{min-width:auto;flex:1 1 40%}
+
+  /* Mobile mono floor (Frontend Developer audit) */
+  .mono{font-size:.82rem}
+  .tile-mini__lbl{font-size:.78rem;line-height:1.15}
+  .tile-mini__sym{font-size:.7rem}
+  .tile-mini__count{font-size:.66rem}
+  .ticker.mono{font-size:.84rem}
+  .hero__meta.mono{font-size:.8rem}
+  .org-chart__caption,.ledger__note,.footer .mono,.skills__count{font-size:.78rem}
+  .form label .mono{font-size:.72rem}
+}
+
+@media (max-width:480px){
+  :root{--pad:14px}
+  .form{padding-left:18px;padding-right:18px}
+  .container{padding-left:var(--pad);padding-right:var(--pad)}
+  .flow{padding-left:22px}
+  .flow::before{left:9px}
+  .flow__step{padding-left:22px;gap:14px}
+  .flow__step::before{left:-15px}
+  .flow__sym{min-width:0;padding:6px 8px;font-size:.7rem}
+}
+
+@media (max-width:400px){
+  .grid-tiles{grid-template-rows:repeat(5,64px);padding:10px;gap:6px}
+  .tile-mini{padding:6px 8px}
+  .tile-mini__lbl{font-size:.7rem;line-height:1.1}
+}
+
+/* Mobile touch targets — bump btn--sm and logo */
+@media (max-width:880px){
+  .nav .btn--sm{min-height:44px;padding:10px 16px}
+  .logo{min-height:44px;display:inline-flex;align-items:center}
+}
+
+/* Flagship dept keeps span across all desktop+tablet breakpoints */
+@media (max-width:1100px) and (min-width:881px){
+  .dept-grid{grid-template-columns:repeat(3,1fr)}
+  .dept--flagship{grid-column:span 2}
+}
+@media (max-width:880px) and (min-width:601px){
+  .dept-grid{grid-template-columns:repeat(2,1fr)}
+  .dept--flagship{grid-column:span 2}
+  .dept--flagship .dept__name{font-size:1.4rem}
+}
+
+/* Form 2-col at tablet, 1-col at phone */
+@media (max-width:880px) and (min-width:601px){
+  .form__row{grid-template-columns:1fr 1fr}
+}
+
+/* Don't stack hero too early — iPad landscape gets the 2-col */
+@media (max-width:980px){
+  .hero__inner{grid-template-columns:1fr;gap:48px}
+  .grid-tiles{max-width:480px;margin:0 auto;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(5,80px)}
+}
+
+/* Ledger 1-col only below 720 (was 880 — wastes 600-880 real estate) */
+@media (max-width:720px){
+  .ledger{grid-template-columns:1fr;gap:18px}
+  .ledger__or{padding:6px 0}
+}
+
+/* Ultrawide: widen container so we don't leave 680px dead gutters */
+@media (min-width:1600px){
+  :root{--container:1320px}
+}
+@media (min-width:2000px){
+  :root{--container:1440px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -726,3 +806,188 @@ main:focus-visible{outline:none}
   }
   .live-dot,.tile-mini__dot,.ops__cell-dot,.org-node--empty::after,.ticker__caret,.palette__caret{animation:none}
 }
+
+/* ═══════════════════════════════════════════════════
+   v2 — Reality Checker + UI Designer fixes
+═══════════════════════════════════════════════════ */
+
+/* ─── CLS prevention: reserve dimensions for animated content ─── */
+.ticker{min-height:38px;width:fit-content;max-width:100%}
+.grid-tiles{min-height:480px}
+.ops__cell{min-height:130px}
+.ops__cell-body{min-height:2.6em}
+
+/* ─── Font fallback with size-adjust (eliminates layout shift) ─── */
+@font-face{
+  font-family:'Geist Fallback';
+  src:local('Inter'),local('system-ui');
+  ascent-override:92%;descent-override:22%;line-gap-override:0%;
+  size-adjust:97%;
+}
+@font-face{
+  font-family:'Inter Fallback';
+  src:local('Arial');
+  ascent-override:90%;descent-override:22%;line-gap-override:0%;
+  size-adjust:107%;
+}
+:root{
+  --font-display:'Geist','Geist Fallback',Inter,system-ui,sans-serif;
+  --font-body:'Inter','Inter Fallback',system-ui,-apple-system,sans-serif;
+}
+
+/* ─── 01.5 WHAT'S ACTUALLY BROKEN ─── */
+.broken{
+  background:var(--canvas);
+  border-top:1px solid var(--border);
+}
+.broken__list{
+  list-style:none;padding:0;margin:0 0 56px;
+  display:grid;grid-template-columns:1fr 1fr;gap:14px 48px;
+  max-width:980px;
+}
+.broken__list li{
+  font-family:var(--font-display);font-size:1.04rem;font-weight:500;
+  line-height:1.5;color:var(--text);
+  padding-left:24px;position:relative;
+}
+.broken__list li::before{
+  content:"";position:absolute;left:0;top:13px;
+  width:14px;height:1px;background:var(--accent);
+}
+.broken__list li strong{color:var(--accent);font-weight:600}
+
+.broken__receipts{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+}
+.receipt{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0) 40%),
+    var(--surface);
+  border:1px solid var(--border);border-radius:var(--r-md);
+  padding:24px 22px;display:flex;flex-direction:column;gap:14px;
+  box-shadow:var(--shadow-card);
+}
+.receipt__time{
+  font-size:.7rem;letter-spacing:.14em;color:var(--signal);
+}
+.receipt p{
+  font-size:.95rem;line-height:1.5;color:var(--text);flex:1;
+}
+
+.pain__reframe{
+  border-left:3px solid var(--accent);
+  padding-left:24px;
+  font-size:clamp(1.15rem,1.7vw,1.4rem);
+  line-height:1.45;color:var(--text);font-weight:400;
+  max-width:760px;
+}
+.pain__reframe strong{color:var(--accent);font-weight:500}
+
+/* ─── 06.5 PRICING — 4-tier grid ─── */
+.pricing{background:var(--canvas-deep);border-top:1px solid var(--border)}
+.tiers{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+}
+.tier{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0) 40%),
+    var(--surface);
+  border:1px solid var(--border);border-radius:var(--r-md);
+  padding:30px 26px;display:flex;flex-direction:column;gap:20px;
+  box-shadow:var(--shadow-card);
+  position:relative;transition:transform var(--t),border-color var(--t),box-shadow var(--t);
+}
+.tier:hover{transform:translateY(-3px);border-color:var(--border-hot);box-shadow:var(--shadow-card-hover)}
+.tier--featured{
+  background:linear-gradient(180deg, rgba(198,255,61,0.04), rgba(198,255,61,0.01)), var(--surface);
+  border-color:var(--border-accent);
+  box-shadow:var(--shadow-accent);
+}
+.tier--enterprise{background:var(--surface)}
+.tier__badge{
+  position:absolute;top:0;right:24px;transform:translateY(-50%);
+  background:var(--accent);color:var(--canvas);
+  font-family:var(--font-mono);font-size:.66rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:6px 12px;border-radius:999px;
+}
+.tier__head{display:flex;flex-direction:column;gap:10px}
+.tier__head .mono{font-size:.7rem;letter-spacing:.16em;color:var(--text-mute)}
+.tier__price{display:flex;align-items:baseline;gap:6px}
+.tier__amount{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(1.8rem,2.6vw,2.4rem);line-height:1;
+  letter-spacing:-0.025em;color:var(--text);
+}
+.tier__amount--text{font-size:clamp(1.3rem,1.8vw,1.6rem);color:var(--accent)}
+.tier__per{font-size:.85rem;color:var(--text-mute);letter-spacing:.04em}
+.tier__sub{font-size:.88rem;color:var(--text-mute);line-height:1.5;min-height:3em}
+.tier__features{
+  display:flex;flex-direction:column;gap:10px;
+  border-top:1px solid var(--border);padding-top:18px;flex:1;
+}
+.tier__features li{
+  font-size:.88rem;color:var(--text);line-height:1.45;
+  padding-left:18px;position:relative;
+}
+.tier__features li::before{
+  content:"";position:absolute;left:0;top:7px;
+  width:6px;height:6px;border-radius:50%;background:var(--signal);
+}
+.tier--featured .tier__features li::before{background:var(--accent)}
+.tier__replaces{
+  font-size:.7rem;letter-spacing:.04em;line-height:1.4;
+  padding-top:14px;border-top:1px dashed var(--border);
+  color:var(--text-mute);
+}
+.tier .btn{justify-content:center;width:100%}
+
+/* ─── URGENCY triggers above form ─── */
+.urgency{
+  list-style:none;padding:0;margin:0 auto 36px;
+  max-width:620px;display:flex;flex-direction:column;gap:10px;text-align:left;
+}
+.urgency li{
+  display:flex;align-items:flex-start;gap:14px;
+  font-size:.92rem;line-height:1.5;
+  color:rgba(232,236,239,.85);
+  padding:14px 18px;
+  background:rgba(255,255,255,.02);
+  border:1px solid var(--border);border-radius:var(--r-md);
+}
+.urgency .mono{
+  flex-shrink:0;
+  font-size:.66rem;letter-spacing:.14em;color:var(--accent);
+  background:rgba(198,255,61,.06);border:1px solid rgba(198,255,61,.2);
+  padding:4px 8px;border-radius:4px;
+}
+
+/* ─── Math close highlight ─── */
+.math__close em{color:var(--accent)}
+
+/* ─── Color rebalance: signal-blue for live indicators ─── */
+.live-pulse,.ops__cell-dot,.tile-mini__dot{background:var(--signal);box-shadow:0 0 8px var(--signal-glow)}
+.ops__footer .accent-text{color:var(--accent)}
+.hero__meta .accent-text{color:var(--signal)}
+
+/* ─── Mobile broken section ─── */
+@media (max-width:880px){
+  .broken__list{grid-template-columns:1fr;gap:12px 0}
+  .broken__receipts{grid-template-columns:1fr;gap:12px}
+}
+
+/* ─── Mobile Ops Floor: 2-col not 1-col, preserves the "floor" feel ─── */
+@media (max-width:880px){
+  .ops__grid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ─── Mobile tier grid ─── */
+@media (max-width:1100px){
+  .tiers{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:600px){
+  .tiers{grid-template-columns:1fr;max-width:480px;margin:0 auto}
+  .tier__sub{min-height:0}
+}
+
+/* ─── Ledger col total mismatched units — fix to /mo on both ─── */
