@@ -28,7 +28,7 @@ export async function onRequestPost(context) {
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${context.env.RESEND_API_KEY}` },
       body: JSON.stringify({
         from: 'AXIS·OS <hello@vidatech.org>',
-        to: ['vidaholdingsgroup@gmail.com'],
+        to: ['vidaholdings@gmail.com'],
         reply_to: email,
         subject: `[AXIS·OS] New lead — ${name}${business ? ' · ' + business : ''}`,
         html,
